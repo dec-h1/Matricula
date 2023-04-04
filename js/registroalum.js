@@ -13,7 +13,7 @@ else{
     while (seleccionarMatricula != 0 ) {
         switch (seleccionarMatricula) {
           case 1:
-           /*  opcion=1 */
+            opcion=1
             matricula();
             break;
           case 2:
@@ -47,8 +47,10 @@ function matricula(){
   
     let cont="";
     alert ("Lista de registro, ingrese nuevo registro de alumno")
-    
-    for (let i = 0; i <= 1; i++) {
+
+     let x = prompt("Ingresa tu nombre:", "");
+        nombre[tope+1] = x;
+   /*  for (let i = 0; i <= 1; i++) {
         let x = prompt("Ingresa tu nombre:", "");
         nombre[i] = x;
     
@@ -56,8 +58,10 @@ function matricula(){
     for (let i = 0; i <= 1; i++) {
         cont += nombre[i] + " ";
     }
-    alert(cont);
+    alert(cont); */
     tope++;
+    cont += nombre[tope] + " ";
+    alert(cont);
     
     /* const nombre=prompt("Ingrese tu nombre: ") */
   /*   if(tope<max){
@@ -67,16 +71,53 @@ function matricula(){
 }
 function mostrarMatriculados(){
   /* alert("hola .. mostrar") */
-  for(let i=0;i<=tope;i++){
-        alert(nombre[i])
+  let cont1=" ";
+  for(let i=1;i<=tope;i++){
+       /*  alert(nombre[i]) */
+        cont1 += nombre[i] + " ";
     } 
-
+    alert(cont1);
 }
 function borrarAlumno(){
-    alert("borrar")
+   /*  alert("borrar") */
+   let x;
+   if(tope>0){
+    alert("El registro esta conformado de la siguiente manera");
+    mostrarMatriculados();
+    if(opcion==2)
+        x=Number(prompt("Cual es el que desea eliminar?"))
+    else
+        x=Number(prompt("Cual es el que desea modificar"))
+    let i=1;
+    while (i<=tope)
+    {
+        if( i==x)
+        {
+            for(let j=i;j<=tope;j++){
+                nombre[j]=nombre[j+1];
+            }
+            tope=tope-1;
+            i=tope+1;
+            cen=1;
+        }
+        else{
+            i++;
+            cen=0;
+        }
+    }
+    if(cen==0){
+        alert("No existe el registro,"+ x)
+        }
+    mostrarMatriculados();
+    }
+    else
+        alert("El registro esta vacio")
 }
 function editarAlumno(){
-    alert("editar")
+   /*  alert("editar") */
+   borrarAlumno();
+   if(cen==1)
+        matricula();
 }
 function ordenar(){
     alert("ordenar")
