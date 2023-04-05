@@ -10,9 +10,7 @@ let celular=[];
 let edad=[];
 let mensual=[];
 let year=[];
-/* const alumnos=[];
-ojo ahi 
-let miId=0*/
+
 let miId=alumnos.length;
 
 let precio=150;
@@ -79,14 +77,6 @@ let total=0;
     alert(cont);  */
   alert("el total de la persona esta inscrita: " + total +" personas")
 
-//inserta datos
-  /*   let cont="";
-    alert ("Lista de registro, ingrese nuevo registro de alumno")
-    let x = prompt("Ingresa tu nombre:", "");
-    nombre[tope+1] = x;
-    tope++;
-    cont += nombre[tope] + "\r ";
-    alert(cont); */
     
 }
 function mostrarMatriculados(){
