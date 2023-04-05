@@ -41,14 +41,39 @@ else{
 }
   
 function matricula(){
+    
+let seleccionarMatricula=Number(prompt( "1-Si eres Universitario 20% por descuento de la mensualidad \r 2-No eres universitario paga la matricula 20 y la mensualidad 150 "))
+let total=0;
+let precio=150;
+ while (seleccionarMatricula != 0 ) {
+    switch (seleccionarMatricula) {
+      case 1:
+        total=total+1
+        llenarDatos() 
+        
+        break;
+      case 2:
+        total=total+1
+        mensual= precio
+        llenarDatos() 
+        break;
   
-    let cont="";
+      default:
+        break;
+    }
+    seleccionarMatricula=Number(prompt( "1-Si eres Universitario 20% por descuento de la mensualidad \r 2-No eres universitario paga la matricula 20 y la mensualidad 150 \r 3- Salir 0"))
+  }
+
+  alert("el total de la persona esta inscrita: " + total +" personas")
+
+//inserta datos
+  /*   let cont="";
     alert ("Lista de registro, ingrese nuevo registro de alumno")
     let x = prompt("Ingresa tu nombre:", "");
     nombre[tope+1] = x;
     tope++;
     cont += nombre[tope] + "\r ";
-    alert(cont);
+    alert(cont); */
     
 }
 function mostrarMatriculados(){
@@ -97,3 +122,22 @@ function editarAlumno(){
    if(cen==1)
         matricula();
 }
+
+
+//datos
+function llenarDatos(){
+
+    let nombre = prompt('Cual es tu nombre?'," ")
+    let apellido= prompt('Cual es tu apellido?'," ")
+    let edad = prompt('Cual es tu edad?'," ")
+    let celular=Number(prompt('Cual es tu numero de celular?'," "))
+    const currentDate = new Date()
+    const year = currentDate.getFullYear() - Number(edad)
+    if(seleccionarMatricula==1){
+      mensual= precio-precio*0.2
+    }else {mensual= precio}
+
+    const datos = "\r Nombre: "+ nombre+ "\r apellido: " + apellido+"\r edad: "+edad+"\r Nro de Celular: "+celular+"\r Año: "+year+"\r mensual: "+mensual;
+    alert("lista registrada: " + datos)
+ 
+ }
