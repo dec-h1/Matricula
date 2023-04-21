@@ -1,9 +1,3 @@
-/* document.write("Bienvenido para inscribirse de la matricula de karate, ingrese la opcion de la matricula, para salir ingrese 0")
-let seleccionarMatricula=Number(window.prompt( " 1- Realizar Matriculas \r 2- Mostrar Matriculados\r 3- Borrar Alumno\r 4- Editar Alumno\r 5- Salir 0"))
-document.write(seleccionarMatricula) */
-
-
-// let seleccionarMatricula=Number(window.prompt( " 1- Realizar Matriculas \r 2- Mostrar Matriculados\r 3- Borrar Alumno\r 4- Editar Alumno\r 5- Salir 0"))
 
 let opcion = 0
 let cen = 0
@@ -17,7 +11,6 @@ let mensual = [];
 let year = [];
 let miId = alumnos.length;
 let precio = 150;
-// seleccionarMatricula=seleccionarMatricula;
 function versionAnterior() {
   if (seleccionarMatricula == "") {
     document.write("Por favor ingresa el numero de opcion de la matricula")
@@ -53,8 +46,6 @@ function versionAnterior() {
     }
   }
 }
-
-
 function matriculaDom() {
 
   const contenedorPrincipal = document.getElementById("principal")
@@ -134,12 +125,6 @@ function matricula() {
     }
     seleccionarMatricula = Number(window.prompt("1-Si eres Universitario 20% por descuento de la mensualidad \r 2-No eres universitario paga la matricula 20 y la mensualidad 150 \r 3- Salir 0"))
   }
-  /* 
-       cont += nombre[tope] + "\r "+apellido[tope]+"\r ";
-      alert(cont);  */
-  // document.write("el total de la persona esta inscrita: " + total +" personas")
-
-
 }
 function mostrarMatriculados() {
   let texto = "";
@@ -165,8 +150,6 @@ function mostrarMatriculados() {
 function borrarAlumno() {
   let x;
   if (alumnos.length > 0) {
-    // document.write("El registro esta conformado de la siguiente manera");
-    // mostrarMatriculados();
     x = Number(window.prompt("Escoge el Id que desea eliminar?"))
     const indice = alumnos.findIndex((alumno) => alumno.id == x)
     if (indice == -1) {
@@ -184,8 +167,7 @@ function borrarAlumno() {
 function editarAlumno() {
   let x;
   if (alumnos.length > 0) {
-    /* document.write("El registro esta conformado de la siguiente manera");
-    mostrarMatriculados(); */
+   
     x = Number(window.prompt("Escoge el Id que desea modificar?"))
     const indice = alumnos.findIndex((alumno) => alumno.id == x)
     if (indice == -1) {
@@ -216,7 +198,6 @@ btnActualizar.addEventListener("click", ()=>{
   alumnos[indice].edad=document.getElementById("inputEdad").value
   alumnos[indice].celular=document.getElementById("inputCelular").value
 
-  
   alert("datos actualizado")
 })
     }
@@ -258,8 +239,6 @@ function llenarDatos(seleccionarMatricula) {
     mensual: mensualTotal,
   })
   datos[tope + 1] = "\r Nombre: " + nombre[tope + 1] + "\r apellido: " + apellido[tope + 1] + "\r edad: " + edad[tope + 1] + "\r Nro de Celular: " + celular[tope + 1] + "\r Año: " + year[tope + 1] + "\r mensual: " + mensual[tope + 1];
-  /*  alert("lista registrada: " + datos[tope+1])
- */
 }
 
 function inicio() {
