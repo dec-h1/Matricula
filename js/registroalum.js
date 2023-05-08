@@ -4,7 +4,6 @@ let precio = 150;
 function matriculaDom() {
   const contenedorPrincipal = document.getElementById("principal");
   contenedorPrincipal.innerHTML = `<div>
-
   <h1>Promoción</h1>
   <input type="radio" name="universitario" id="uni" value="uni">
   <label for="uni">Si eres Universitario 20% por descuento de la mensualidad</label>
@@ -45,15 +44,9 @@ function llenarDatosDom() {
   let elementoActivo = document.querySelector(
     'input[name="universitario"]:checked'
   );
-  // console.log(elementoActivo.value)
-  // let mensualTotal;
-  // if (elementoActivo.value == "uni") {
-  //   mensualTotal = precio - precio * 0.2;
-  // } else {
-  //   mensualTotal = precio;
-  // }
-  
-  const mensualTotal=(elementoActivo.value == "uni")?  precio - precio * 0.2: precio
+
+  const mensualTotal =
+    elementoActivo.value == "uni" ? precio - precio * 0.2 : precio;
   miId++;
   alumnos.push({
     id: miId,
@@ -63,7 +56,6 @@ function llenarDatosDom() {
     celular: celular,
     mensual: mensualTotal,
   });
-  // alert("se registro correctamente")
   Swal.fire("Bienvenido!", "Se registro correctamente!", "success");
 }
 
@@ -93,55 +85,48 @@ function borrarAlumno() {
     Swal.fire({
       title: "Escoge el Id que desea eliminar?",
       input: "number",
-      inputPlaceholder:'Selecciona el Id',
+      inputPlaceholder: "Selecciona el Id",
       showCancelButton: true,
       confirmButtonText: "Aceptar",
       cancelButtonText: "Cancelar",
-    })
-    .then(resultado => {
+    }).then((resultado) => {
       if (resultado.isConfirmed) {
         const idSeleccionado = resultado.value;
-        const indice = alumnos.findIndex((alumno) => alumno.id == idSeleccionado);
-
-  // let x;
-  // if (alumnos.length > 0) {
-  //   x = Number(window.prompt("Escoge el Id que desea eliminar?"));
-  //   const indice = alumnos.findIndex((alumno) => alumno.id == x);
-    if (indice == -1) {
-      Swal.fire("No existe el registro!");
-      // document.write("No existe el registro")
-    } else {
-      alumnos.splice(indice, 1);
-      Swal.fire("Borrado!", "Se elimino el registro!", "success");
-      // alert("se elimino el registro")
-      inicio();
-    }
-  }
-  });
+        const indice = alumnos.findIndex(
+          (alumno) => alumno.id == idSeleccionado
+        );
+        if (indice == -1) {
+          Swal.fire("No existe el registro!");
+        } else {
+          alumnos.splice(indice, 1);
+          Swal.fire("Borrado!", "Se elimino el registro!", "success");
+          inicio();
+        }
+      }
+    });
   } else document.write("El registro esta vacio");
 }
-/* function editarAlumno() {
-  let x; */
-  function editarAlumno() {
-    if (alumnos.length > 0) {
-      Swal.fire({
-        title: "Escoge el Id que desea modificar?",
-        input: "number",
-        inputPlaceholder:'Selecciona el Id',
-        showCancelButton: true,
-        confirmButtonText: "Aceptar",
-        cancelButtonText: "Cancelar",
-      })
-      .then(resultado => {
-        if (resultado.isConfirmed) {
-          const idSeleccionado = resultado.value;
-          const indice = alumnos.findIndex((alumno) => alumno.id == idSeleccionado);
-  
-          if (indice == -1) {
-            document.write("No existe el registro");
-          } else {
-            const contenedorPrincipal = document.getElementById("principal");
-            contenedorPrincipal.innerHTML = `<div>
+function editarAlumno() {
+  if (alumnos.length > 0) {
+    Swal.fire({
+      title: "Escoge el Id que desea modificar?",
+      input: "number",
+      inputPlaceholder: "Selecciona el Id",
+      showCancelButton: true,
+      confirmButtonText: "Aceptar",
+      cancelButtonText: "Cancelar",
+    }).then((resultado) => {
+      if (resultado.isConfirmed) {
+        const idSeleccionado = resultado.value;
+        const indice = alumnos.findIndex(
+          (alumno) => alumno.id == idSeleccionado
+        );
+
+        if (indice == -1) {
+          document.write("No existe el registro");
+        } else {
+          const contenedorPrincipal = document.getElementById("principal");
+          contenedorPrincipal.innerHTML = `<div>
               <label for="nombre">Nombre</label>
               <input type="text" id="inputNombre" value=${alumnos[indice].nombre}>
               <label for="apellido">Apellido</label>
@@ -153,32 +138,28 @@ function borrarAlumno() {
               <button id="btnActualizar">Actualizar Alumno</button>
               <button id="btnVolver">Volver</button>
             </div>`;
-            
-            const btnVolver = document.getElementById("btnVolver");
-            btnVolver.addEventListener("click", () => {
-              inicio();
-            });
-            
-            const btnActualizar = document.getElementById("btnActualizar");
-            btnActualizar.addEventListener("click", () => {
-              alumnos[indice].nombre = document.getElementById("inputNombre").value;
-              alumnos[indice].apellido = document.getElementById("inputApellido").value;
-              alumnos[indice].edad = document.getElementById("inputEdad").value;
-              alumnos[indice].celular = document.getElementById("inputCelular").value;
-  
-              Swal.fire("Correcto!", "Datos actualizado!", "success");
-              // alert("datos actualizado")
-            });
-          }
+          const btnVolver = document.getElementById("btnVolver");
+          btnVolver.addEventListener("click", () => {
+            inicio();
+          });
+          const btnActualizar = document.getElementById("btnActualizar");
+          btnActualizar.addEventListener("click", () => {
+            alumnos[indice].nombre =
+              document.getElementById("inputNombre").value;
+            alumnos[indice].apellido =
+              document.getElementById("inputApellido").value;
+            alumnos[indice].edad = document.getElementById("inputEdad").value;
+            alumnos[indice].celular =
+              document.getElementById("inputCelular").value;
+            Swal.fire("Correcto!", "Datos actualizado!", "success");
+          });
         }
-      });
-    } else {
-      Swal.fire("El registro esta vacio!");
-      // alert("El registro esta vacio")
-    }
+      }
+    });
+  } else {
+    Swal.fire("El registro esta vacio!");
   }
-
-
+}
 function inicio() {
   const contenedorPrincipal = document.getElementById("principal");
   contenedorPrincipal.innerHTML = ` 
@@ -194,7 +175,6 @@ function inicio() {
 <li id="seccion3"><a href="#">Borrar Alumno</a></li>
 <li id="seccion4"><a href="#">Editar Alumno</a></li> 
 </ol>`;
-
   const liRealizarMatricula = document.getElementById("seccion1");
   liRealizarMatricula.addEventListener("click", () => {
     matriculaDom();
@@ -212,5 +192,4 @@ function inicio() {
     editarAlumno();
   });
 }
-
 inicio();
