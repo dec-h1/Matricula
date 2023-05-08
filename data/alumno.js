@@ -1,3 +1,5 @@
+/* const alurmnos=getAlumnos();
+console.log(alumnos) */
 const alumnos=
 [
     {
